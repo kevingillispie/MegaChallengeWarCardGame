@@ -187,7 +187,7 @@ namespace MegaChallengeWarCardGame
                 playerCards2++;
             }
 
-            resultLabel1.Text += String.Format("<br><br>Player One has {0} cards.<br>Player Two has {1} cards.", playerCards1, playerCards2);
+            resultLabel1.Text += String.Format("<br><br>Player One has <strong>{0}</strong> cards.<br>Player Two has <strong>{1}</strong> cards.", playerCards1, playerCards2);
 
             return 0;
         }
