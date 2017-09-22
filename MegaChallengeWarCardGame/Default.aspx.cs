@@ -21,10 +21,11 @@ namespace MegaChallengeWarCardGame
             Game(playerDeck1, playerDeck2);
         }
 
-        public int Shuffle(Random rnd, out Dictionary<int, string> deck, out List<KeyValuePair<int, string>> playerDeck1, out List<KeyValuePair<int, string>> playerDeck2)
+        public void Shuffle(Random rnd, out Dictionary<int, string> deck, out List<KeyValuePair<int, string>> playerDeck1, out List<KeyValuePair<int, string>> playerDeck2)
         {
-
+            
             deck = new Dictionary<int, string>();
+            /*
             deck.Add(1, "2♠"); deck.Add(2, "3♠"); deck.Add(3, "4♠"); deck.Add(4, "5♠"); deck.Add(5, "6♠");
             deck.Add(6, "7♠"); deck.Add(7, "8♠"); deck.Add(8, "9♠"); deck.Add(9, "10♠"); deck.Add(10, "J♠");
             deck.Add(11, "Q♠"); deck.Add(12, "K♠"); deck.Add(13, "A♠");
@@ -40,10 +41,30 @@ namespace MegaChallengeWarCardGame
             deck.Add(40, "2♣"); deck.Add(41, "3♣"); deck.Add(42, "4♣"); deck.Add(43, "5♣"); deck.Add(44, "6♣");
             deck.Add(45, "7♣"); deck.Add(46, "8♣"); deck.Add(47, "9♣"); deck.Add(48, "10♣"); deck.Add(49, "J♣");
             deck.Add(50, "Q♣"); deck.Add(51, "K♣"); deck.Add(52, "A♣");
+            */
 
             playerDeck1 = new List<KeyValuePair<int, string>>();
             playerDeck2 = new List<KeyValuePair<int, string>>();
 
+            string[] suits = new string[] { "♠", "♥", "♦", "♣" };
+            string[] kinds = new string[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+            int key = 1;
+
+            foreach (var suit in suits)
+            {
+                foreach (var kind in kinds)
+                {
+                    if (suit == "♥" || suit == "♦")
+                    {
+                        deck.Add(key, "<span style=\"color: red; \">" + kind + suit + "</span>");
+                    }
+                    else deck.Add(key, kind + suit);
+                    key++;
+                    //if (key == 52) return;
+                }
+                key++;
+                //if (key == 52) return;
+            }
 
             int iterationCount = 0;
             for (int i = 51; i >= 0; i--)
@@ -66,11 +87,9 @@ namespace MegaChallengeWarCardGame
 
                 iterationCount++;
             }
-
-            return 0;
         }
 
-        public int Game(List<KeyValuePair<int, string>> playerDeck1, List<KeyValuePair<int, string>> playerDeck2)
+        public void Game(List<KeyValuePair<int, string>> playerDeck1, List<KeyValuePair<int, string>> playerDeck2)
         {
             Dictionary<int, string> battlePile = new Dictionary<int, string>();
 
@@ -189,7 +208,6 @@ namespace MegaChallengeWarCardGame
 
             resultLabel1.Text += String.Format("<br><br>Player One has <strong>{0}</strong> cards.<br>Player Two has <strong>{1}</strong> cards.", playerCards1, playerCards2);
 
-            return 0;
         }
     }
 }
