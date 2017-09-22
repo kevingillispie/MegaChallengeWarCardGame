@@ -176,6 +176,18 @@ namespace MegaChallengeWarCardGame
                     battlePile.Clear();
                 }
             }
+            int playerCards1 = 0;
+            int playerCards2 = 0;
+            foreach (var item in playerDeck1)
+            {
+                playerCards1++;
+            }
+            foreach (var item in playerDeck2)
+            {
+                playerCards2++;
+            }
+
+            resultLabel1.Text += String.Format("<br><br>Player One has {0} cards.<br>Player Two has {1} cards.", playerCards1, playerCards2);
 
             return 0;
         }
